@@ -1,6 +1,10 @@
 import express , { Application } from 'express';
 import morgan from 'morgan';
-import cors from 'cors'
+import cors from 'cors';
+
+// routes
+import usuariosRoutes from './src/routes/usuariosRoutes';
+import authRoutes from './src/routes/authRoutes';
 
 
 class Server {
@@ -24,7 +28,10 @@ class Server {
     }
 
     // Rutas para mi APIRest
-    routes(): void {}
+    routes(): void {
+        this.app.use('/usuario', usuariosRoutes);
+        this.app.use('/auth', authRoutes);
+    }
 
     // Inicialización del servidor
     start(): void {
@@ -32,8 +39,8 @@ class Server {
             console.log("Server on port", this.app.get('port'));
         });
     }
-
+ 
 }
 
 const server = new Server();
-server.start(); 
+server.start();
