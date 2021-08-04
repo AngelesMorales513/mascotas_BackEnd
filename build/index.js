@@ -10,6 +10,7 @@ var cors_1 = __importDefault(require("cors"));
 var usuariosRoutes_1 = __importDefault(require("./src/routes/usuariosRoutes"));
 var authRoutes_1 = __importDefault(require("./src/routes/authRoutes"));
 var mascotasRoutes_1 = __importDefault(require("./src/routes/mascotasRoutes"));
+var razaRoutes_1 = __importDefault(require("./src/routes/razaRoutes"));
 var Server = /** @class */ (function () {
     // Constructor de nuestro servidor
     function Server() {
@@ -30,6 +31,7 @@ var Server = /** @class */ (function () {
         this.app.use('/mascota', mascotasRoutes_1.default);
         this.app.use('/usuario', usuariosRoutes_1.default);
         this.app.use('/auth', authRoutes_1.default);
+        this.app.use('/raza', razaRoutes_1.default);
     };
     // Inicialización del servidor
     Server.prototype.start = function () {

@@ -6,8 +6,7 @@ import cors from 'cors';
 import usuariosRoutes from './src/routes/usuariosRoutes';
 import authRoutes from './src/routes/authRoutes';
 import mascotasRoutes from './src/routes/mascotasRoutes';
-
-
+import razaRoutes from './src/routes/razaRoutes';
 
 
 class Server {
@@ -35,6 +34,7 @@ class Server {
         this.app.use('/mascota', mascotasRoutes)
         this.app.use('/usuario', usuariosRoutes);
         this.app.use('/auth', authRoutes);
+        this.app.use('/raza', razaRoutes);
     }
 
     // Inicialización del servidor
