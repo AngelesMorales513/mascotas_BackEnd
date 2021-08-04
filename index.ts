@@ -5,6 +5,9 @@ import cors from 'cors';
 // routes
 import usuariosRoutes from './src/routes/usuariosRoutes';
 import authRoutes from './src/routes/authRoutes';
+import mascotasRoutes from './src/routes/mascotasRoutes';
+
+
 
 
 class Server {
@@ -29,6 +32,7 @@ class Server {
 
     // Rutas para mi APIRest
     routes(): void {
+        this.app.use('/mascota', mascotasRoutes)
         this.app.use('/usuario', usuariosRoutes);
         this.app.use('/auth', authRoutes);
     }

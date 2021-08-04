@@ -9,6 +9,7 @@ var cors_1 = __importDefault(require("cors"));
 // routes
 var usuariosRoutes_1 = __importDefault(require("./src/routes/usuariosRoutes"));
 var authRoutes_1 = __importDefault(require("./src/routes/authRoutes"));
+var mascotasRoutes_1 = __importDefault(require("./src/routes/mascotasRoutes"));
 var Server = /** @class */ (function () {
     // Constructor de nuestro servidor
     function Server() {
@@ -26,6 +27,7 @@ var Server = /** @class */ (function () {
     };
     // Rutas para mi APIRest
     Server.prototype.routes = function () {
+        this.app.use('/mascota', mascotasRoutes_1.default);
         this.app.use('/usuario', usuariosRoutes_1.default);
         this.app.use('/auth', authRoutes_1.default);
     };
