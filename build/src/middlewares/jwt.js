@@ -17,7 +17,8 @@ var checkJwt = function (req, res, next) {
         return res.status(404).json({ message: "No autorizado" });
     }
     var cveUsuario = jwtPayLoad.cveUsuario, username = jwtPayLoad.username, mascota = jwtPayLoad.mascota;
-    var newToken = jsonwebtoken_1.default.sign({ cveUsuario: cveUsuario, username: username, mascota: mascota }, jwkey_1.default.jwtSecret, { expiresIn: '1h' });
+    var newToken = jsonwebtoken_1.default.sign({ cveUsuario: cveUsuario, username: username }, jwkey_1.default.jwtSecret, { expiresIn: '1h' });
+    /*const newToken = jwt.sign({cveUsuario, username, mascota}, secretKey.jwtSecret, {expiresIn : '1h'});*/
     res.setHeader('token', newToken);
     next();
 };

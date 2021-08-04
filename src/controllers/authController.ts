@@ -26,8 +26,10 @@ class AuthController {
 
         for(let user of users) {
             if(await utils.checkPassword(password, user.password)){
-                const token = jwt.sign({cveUsuario : user.cveUsuario, username, mascota : user.nombre}, secretKey.jwtSecret, {expiresIn : '1h'});
-                return res.json({ message : "OK", token, cveUsuario : user.cveUsuario, username, mascota: user.nombreMascota, nombre: user.nombre, apellidos: user.apellidos, raza: user.nombreRaza });
+                /*const token = jwt.sign({cveUsuario : user.cveUsuario, username, mascota : user.nombre}, secretKey.jwtSecret, {expiresIn : '1h'});
+                return res.json({ message : "OK", token, cveUsuario : user.cveUsuario, username, mascota: user.nombreMascota, nombre: user.nombre, apellidos: user.apellidos, raza: user.nombreRaza });*/
+                const token = jwt.sign({cveUsuario : user.cveUsuario, username}, secretKey.jwtSecret, {expiresIn : '1h'});
+                return res.json({ message : "OK", token, cveUsuario : user.cveUsuario, username,  nombre: user.nombre, apellidos: user.apellidos });
             } else {
                 return res.status(400).json({message : "La contraseña es incorrecta"});
             }
