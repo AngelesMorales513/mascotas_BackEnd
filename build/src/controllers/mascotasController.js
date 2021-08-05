@@ -48,7 +48,7 @@ var MascotasController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, mascotasDao_1.dao.lista()];
+                        return [4 /*yield*/, mascotasDao_1.daoM.lista()];
                     case 1:
                         result = _a.sent();
                         res.json(result);
@@ -56,6 +56,127 @@ var MascotasController = /** @class */ (function () {
                     case 2:
                         error_1 = _a.sent();
                         res.status(500).json({ message: error_1.message });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MascotasController.prototype.listaByUsuario = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var username, result, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        username = req.params.username;
+                        if (username == null) {
+                            return [2 /*return*/, res.status(400).json({ message: "No se puede eliminar" })];
+                        }
+                        return [4 /*yield*/, mascotasDao_1.daoM.listaByUsuario(username)];
+                    case 1:
+                        result = _a.sent();
+                        res.json(result);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_2 = _a.sent();
+                        res.status(500).json({ message: error_2.message });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MascotasController.prototype.insert = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, nombreMascota, fechaAdopcion, cvePropietario, raza, mascota, result, ex_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _b.trys.push([0, 2, , 3]);
+                        _a = req.body, nombreMascota = _a.nombreMascota, fechaAdopcion = _a.fechaAdopcion, cvePropietario = _a.cvePropietario, raza = _a.raza;
+                        if (nombreMascota == null || fechaAdopcion == null || cvePropietario == null || raza == null) {
+                            return [2 /*return*/, res.status(400).json({ meesage: "Datos obligatorios" })];
+                        }
+                        mascota = {
+                            nombreMascota: nombreMascota,
+                            fechaAdopcion: fechaAdopcion,
+                            cvePropietario: cvePropietario,
+                            raza: raza,
+                        };
+                        return [4 /*yield*/, mascotasDao_1.daoM.insert(mascota)];
+                    case 1:
+                        result = _b.sent();
+                        if (result.affectedRows > 0) {
+                            return [2 /*return*/, res.json({ meesage: "El registro se realizo exitosamente" })];
+                        }
+                        else {
+                            return [2 /*return*/, res.status(400).json({ meesage: result.message })];
+                        }
+                        return [3 /*break*/, 3];
+                    case 2:
+                        ex_1 = _b.sent();
+                        res.status(500).json({ message: ex_1.message });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MascotasController.prototype.update = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var mascota, result, ex_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        mascota = req.body;
+                        if (mascota.cveMascota == null) {
+                            return [2 /*return*/, res.status(400).json({ meesage: "Error en actualización" })];
+                        }
+                        return [4 /*yield*/, mascotasDao_1.daoM.update(mascota)];
+                    case 1:
+                        result = _a.sent();
+                        if (result.affectedRows > 0) {
+                            return [2 /*return*/, res.json({ meesage: "La actualización se realizó correctamente" })];
+                        }
+                        else {
+                            return [2 /*return*/, res.status(400).json({ meesage: result.message })];
+                        }
+                        return [3 /*break*/, 3];
+                    case 2:
+                        ex_2 = _a.sent();
+                        res.status(500).json({ message: ex_2.message });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MascotasController.prototype.delete = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var cveMascota, result, error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        cveMascota = req.params.cveMascota;
+                        if (cveMascota == null) {
+                            return [2 /*return*/, res.status(400).json({ message: "Error al eliminar registro" })];
+                        }
+                        return [4 /*yield*/, mascotasDao_1.daoM.delete(parseInt(cveMascota))];
+                    case 1:
+                        result = _a.sent();
+                        if (result.affectedRows > 0) {
+                            res.json({ message: "Registro eliminado correctamente" });
+                        }
+                        else {
+                            res.status(400).json({ message: result.message });
+                        }
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_3 = _a.sent();
+                        res.status(400).json({ message: error_3.message });
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }

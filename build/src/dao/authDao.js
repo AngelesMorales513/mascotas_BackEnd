@@ -53,10 +53,8 @@ var AuthDAO = /** @class */ (function () {
                     case 0: return [4 /*yield*/, database_1.default.then(function (connection) { return __awaiter(_this, void 0, void 0, function () {
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
-                                    case 0: return [4 /*yield*/, connection.query('SELECT * FROM usuario WHERE username = ?', [usuario])];
-                                    case 1: 
-                                    /*return await connection.query('SELECT * FROM usuario JOIN mascota ON usuario.cveUsuario = mascota.cvePropietario JOIN raza ON mascota.raza = raza.cveRaza WHERE username = ?', [usuario]);*/
-                                    return [2 /*return*/, _a.sent()];
+                                    case 0: return [4 /*yield*/, connection.query("SELECT cveUsuario, nombre, apellidos, username, password, cveMascota, nombreMascota,fechaAdopcion ,raza, cveRaza, nombreRaza FROM usuario LEFT JOIN mascota ON usuario.cveUsuario = mascota.cvePropietario LEFT JOIN raza ON mascota.raza = raza.cveRaza WHERE usuario.username = ?", [usuario])];
+                                    case 1: return [2 /*return*/, _a.sent()];
                                 }
                             });
                         }); })];

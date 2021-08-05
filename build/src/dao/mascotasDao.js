@@ -39,11 +39,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dao = void 0;
+exports.daoM = void 0;
 var database_1 = __importDefault(require("../database/database"));
 var MascotaDao = /** @class */ (function () {
     function MascotaDao() {
     }
+    MascotaDao.prototype.listaByUsuario = function (username) {
+        return __awaiter(this, void 0, void 0, function () {
+            var result;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, database_1.default.then(function (connection) { return __awaiter(_this, void 0, void 0, function () {
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0: return [4 /*yield*/, connection.query("SELECT cveUsuario, nombre, apellidos, username, cveMascota, nombreMascota,fechaAdopcion, raza, cveRaza, nombreRaza FROM usuario JOIN mascota ON usuario.cveUsuario = mascota.cvePropietario JOIN raza ON mascota.raza = raza.cveRaza WHERE usuario.username = ?", [username])];
+                                    case 1: return [2 /*return*/, _a.sent()];
+                                }
+                            });
+                        }); })];
+                    case 1:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                }
+            });
+        });
+    };
     MascotaDao.prototype.lista = function () {
         return __awaiter(this, void 0, void 0, function () {
             var result;
@@ -53,7 +74,70 @@ var MascotaDao = /** @class */ (function () {
                     case 0: return [4 /*yield*/, database_1.default.then(function (connection) { return __awaiter(_this, void 0, void 0, function () {
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
-                                    case 0: return [4 /*yield*/, connection.query("SELECT cveUsuario, nombre, apellidos, username, cveMascota, nombreMascota, raza, cveRaza, nombreRaza  FROM usuario JOIN mascota ON usuario.cveUsuario = mascota.cvePropietario JOIN raza ON mascota.raza = raza.cveRaza ORDER BY usuario.nombre, usuario.apellidos ASC")];
+                                    case 0: return [4 /*yield*/, connection.query("SELECT cveUsuario, nombre, apellidos, username, cveMascota, nombreMascota, raza, cveRaza, nombreRaza FROM usuario JOIN mascota ON usuario.cveUsuario = mascota.cvePropietario JOIN raza ON mascota.raza = raza.cveRaza")];
+                                    case 1: return [2 /*return*/, _a.sent()];
+                                }
+                            });
+                        }); })];
+                    case 1:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                }
+            });
+        });
+    };
+    MascotaDao.prototype.insert = function (mascota) {
+        return __awaiter(this, void 0, void 0, function () {
+            var result;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, database_1.default.then(function (connection) { return __awaiter(_this, void 0, void 0, function () {
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0: return [4 /*yield*/, connection.query("INSERT INTO mascota SET ?", [mascota])];
+                                    case 1: return [2 /*return*/, _a.sent()];
+                                }
+                            });
+                        }); })];
+                    case 1:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                }
+            });
+        });
+    };
+    MascotaDao.prototype.update = function (mascota) {
+        return __awaiter(this, void 0, void 0, function () {
+            var result;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, database_1.default.then(function (connection) { return __awaiter(_this, void 0, void 0, function () {
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0: return [4 /*yield*/, connection.query("UPDATE mascota SET ? WHERE cveMascota = ?", [mascota, mascota.cveMascota])];
+                                    case 1: return [2 /*return*/, _a.sent()];
+                                }
+                            });
+                        }); })];
+                    case 1:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                }
+            });
+        });
+    };
+    MascotaDao.prototype.delete = function (cveMascota) {
+        return __awaiter(this, void 0, void 0, function () {
+            var result;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, database_1.default.then(function (connection) { return __awaiter(_this, void 0, void 0, function () {
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0: return [4 /*yield*/, connection.query("DELETE FROM mascota WHERE cveMascota = ?", [cveMascota])];
                                     case 1: return [2 /*return*/, _a.sent()];
                                 }
                             });
@@ -67,4 +151,4 @@ var MascotaDao = /** @class */ (function () {
     };
     return MascotaDao;
 }());
-exports.dao = new MascotaDao();
+exports.daoM = new MascotaDao();

@@ -9,6 +9,10 @@ var MascotasRoutes = /** @class */ (function () {
     }
     MascotasRoutes.prototype.config = function () {
         this.router.get('/', /*[checkJwt],*/ mascotasController_1.mascotaController.lista);
+        this.router.get('/listaByUsuario/:username', /*[checkJwt],*/ mascotasController_1.mascotaController.listaByUsuario);
+        this.router.put('/', /*[checkJwt],*/ mascotasController_1.mascotaController.insert);
+        this.router.post('/', /*[checkJwt],*/ mascotasController_1.mascotaController.update);
+        this.router.delete('/:cveMascota' /*, [checkJwt]*/, mascotasController_1.mascotaController.delete);
     };
     return MascotasRoutes;
 }());
