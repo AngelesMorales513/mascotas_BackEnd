@@ -14,13 +14,13 @@ class MascotasController {
 
     public async listaByUsuario(req: Request, res: Response) {
         try {
-            const { cveUsuario } = req.params;
+            const { username  } = req.params;
 
-            if(cveUsuario == null){
+            if(username  == null){
                 return res.status(400).json({ message : "No se puede eliminar" });
             }
 
-            const result = await daoM.listaByUsuario(parseInt(cveUsuario));
+            const result = await daoM.listaByUsuario(username);
             res.json(result);
 
         } catch (error) {

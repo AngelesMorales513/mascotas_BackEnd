@@ -1,9 +1,9 @@
 import pool from "../database/database";
 
 class MascotaDao {
-    public async listaByUsuario(cveUsuario: number) {
+    public async listaByUsuario(username: string) {
         const result  = await pool.then(async (connection) => {
-            return await connection.query("SELECT cveUsuario, nombre, apellidos, username, cveMascota, nombreMascota,fechaAdopcion, raza, cveRaza, nombreRaza FROM usuario JOIN mascota ON usuario.cveUsuario = mascota.cvePropietario JOIN raza ON mascota.raza = raza.cveRaza WHERE cvePropietario = ?", [cveUsuario]);
+            return await connection.query("SELECT cveUsuario, nombre, apellidos, username, cveMascota, nombreMascota,fechaAdopcion, raza, cveRaza, nombreRaza FROM usuario JOIN mascota ON usuario.cveUsuario = mascota.cvePropietario JOIN raza ON mascota.raza = raza.cveRaza WHERE usuario.username = ?", [username]);
         });
 
         return result;
