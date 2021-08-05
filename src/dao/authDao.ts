@@ -4,7 +4,7 @@ class AuthDAO {
 
     public async getUser(usuario: string) {
         const result = await pool.then(async (connection) => {
-            return await connection.query("SELECT cveUsuario, nombre, apellidos, username, password, cveMascota, nombreMascota, raza, cveRaza, nombreRaza FROM usuario JOIN mascota ON usuario.cveUsuario = mascota.cvePropietario JOIN raza ON mascota.raza = raza.cveRaza WHERE usuario.username = ?", [usuario]);
+            return await connection.query("SELECT cveUsuario, nombre, apellidos, username, password, cveMascota, nombreMascota,fechaAdopcion ,raza, cveRaza, nombreRaza FROM usuario JOIN mascota ON usuario.cveUsuario = mascota.cvePropietario JOIN raza ON mascota.raza = raza.cveRaza WHERE usuario.username = ?", [usuario]);
         });
 
         return result;
