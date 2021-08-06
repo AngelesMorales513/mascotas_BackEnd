@@ -65,7 +65,7 @@ class MascotasController {
             const result = await daoM.update(mascota);
 
             if(result.affectedRows > 0){
-                return res.json({ meesage : "La actualización se realizó correctamente" });
+                return res.json({ meesage : "La actualización se realizó correctamente" })
             } else  {
                 return res.status(400).json({ meesage : result.message });
             }

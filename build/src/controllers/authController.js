@@ -47,10 +47,6 @@ var utils_1 = require("../utils/utils");
 var AuthController = /** @class */ (function () {
     function AuthController() {
     }
-    /**
-    * Nombre: Login
-    * Descripcion: metodo que comprueba los datos de acceso del usuario
-    */
     AuthController.prototype.login = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var _a, username, password, nombre, apellidos, users, _i, users_1, user, token;
@@ -58,17 +54,22 @@ var AuthController = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         _a = req.body, username = _a.username, password = _a.password, nombre = _a.nombre, apellidos = _a.apellidos;
-                        console.log(username, password);
+                        //console.log(username, password);
                         if (username == null || password == null) {
                             return [2 /*return*/, res.status(400).json({ message: "Datos incorrectos" })];
                         }
                         return [4 /*yield*/, authDao_1.dao.getUser(username)];
                     case 1:
                         users = _b.sent();
+                        /*const mascotas = await daoM.listaByUsuario(username);
+                        if(mascotas.length <= 0) {
+                            return res.status(400).json({ message: "Aún no tiene mascotas en adopción" });
+                        }*/
                         // Verificar si existe el usuario
                         if (users.length <= 0) {
                             return [2 /*return*/, res.status(400).json({ message: "El usuario no existe" })];
                         }
+                        console.log(users);
                         _i = 0, users_1 = users;
                         _b.label = 2;
                     case 2:
@@ -78,10 +79,11 @@ var AuthController = /** @class */ (function () {
                     case 3:
                         if (_b.sent()) {
                             token = jsonwebtoken_1.default.sign({ cveUsuario: user.cveUsuario, username: username }, jwkey_1.default.jwtSecret, { expiresIn: '1h' });
-                            return [2 /*return*/, res.json({ message: "OK", token: token, cveUsuario: user.cveUsuario, username: username, nombre: user.nombre, apellidos: user.apellidos })];
+                            return [2 /*return*/, res.json({ message: "OK", token: token, cveUsuario: user.cveUsuario, username: username, nombre: user.nombre, apellidos: user.apellidos, nombreMascota: user.nombreMascota, nombreRaza: user.nombreRaza, fechaAdopcion: user.fechaAdopcion })];
+                            //}
                         }
                         else {
-                            return [2 /*return*/, res.status(400).json({ message: "La contraseña es incorrecta" })];
+                            return [2 /*return*/, res.status(400).json({ message: "La contraseña NO es correcta" })];
                         }
                         _b.label = 4;
                     case 4:
