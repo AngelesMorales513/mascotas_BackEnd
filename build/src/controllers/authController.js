@@ -43,6 +43,7 @@ exports.authController = void 0;
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var jwkey_1 = __importDefault(require("../config/jwkey"));
 var authDao_1 = require("../dao/authDao");
+// import { daoM } from '../dao/mascotasDao';
 var utils_1 = require("../utils/utils");
 var AuthController = /** @class */ (function () {
     function AuthController() {
@@ -80,7 +81,6 @@ var AuthController = /** @class */ (function () {
                         if (_b.sent()) {
                             token = jsonwebtoken_1.default.sign({ cveUsuario: user.cveUsuario, username: username }, jwkey_1.default.jwtSecret, { expiresIn: '1h' });
                             return [2 /*return*/, res.json({ message: "OK", token: token, cveUsuario: user.cveUsuario, username: username, nombre: user.nombre, apellidos: user.apellidos, nombreMascota: user.nombreMascota, nombreRaza: user.nombreRaza, fechaAdopcion: user.fechaAdopcion })];
-                            //}
                         }
                         else {
                             return [2 /*return*/, res.status(400).json({ message: "La contraseña NO es correcta" })];

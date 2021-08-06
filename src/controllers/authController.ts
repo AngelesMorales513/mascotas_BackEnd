@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import secretKey from '../config/jwkey';
 import { dao } from '../dao/authDao';   
-import { daoM } from '../dao/mascotasDao';
+// import { daoM } from '../dao/mascotasDao';
 import { utils } from '../utils/utils';
 
 class AuthController {
@@ -27,10 +27,13 @@ class AuthController {
 
         for(let user of users) {
             if(await utils.checkPassword(password, user.password)){
+
                 //for (let mascota of mascotas) {
                 const token = jwt.sign({cveUsuario : user.cveUsuario, username}, secretKey.jwtSecret, {expiresIn : '1h'});
                 return res.json({ message : "OK", token, cveUsuario : user.cveUsuario, username,  nombre: user.nombre, apellidos: user.apellidos, nombreMascota: user.nombreMascota, nombreRaza: user.nombreRaza, fechaAdopcion: user.fechaAdopcion});
-                //}
+
+               
+
             } else {
                 return res.status(400).json({message : "La contraseña NO es correcta"});
             }
