@@ -45,9 +45,9 @@ class MascotasController {
             const result = await daoM.insert(mascota);
 
             if(result.affectedRows > 0){
-                return res.json({ meesage : "El registro se realizo exitosamente" });
+                return res.json({ message : "El registro se realizo exitosamente" });
             } else  {
-                return res.status(400).json({ meesage : result.message });
+                return res.status(400).json({ message : result.message });
             }
 
         } catch (ex) {
@@ -59,15 +59,15 @@ class MascotasController {
             const mascota = req.body;
 
             if(mascota.cveMascota == null){
-                return res.status(400).json({ meesage : "Error en actualización" });
+                return res.status(400).json({ message : "Error en actualización" });
             }
 
             const result = await daoM.update(mascota);
 
             if(result.affectedRows > 0){
-                return res.json({ meesage : "La actualización se realizó correctamente" })
+                return res.json({ message : "La actualización se realizó correctamente" })
             } else  {
-                return res.status(400).json({ meesage : result.message });
+                return res.status(400).json({ message : result.message });
             }
 
         } catch (ex) {

@@ -108,10 +108,10 @@ var MascotasController = /** @class */ (function () {
                     case 1:
                         result = _b.sent();
                         if (result.affectedRows > 0) {
-                            return [2 /*return*/, res.json({ meesage: "El registro se realizo exitosamente" })];
+                            return [2 /*return*/, res.json({ message: "El registro se realizo exitosamente" })];
                         }
                         else {
-                            return [2 /*return*/, res.status(400).json({ meesage: result.message })];
+                            return [2 /*return*/, res.status(400).json({ message: result.message })];
                         }
                         return [3 /*break*/, 3];
                     case 2:
@@ -132,16 +132,16 @@ var MascotasController = /** @class */ (function () {
                         _a.trys.push([0, 2, , 3]);
                         mascota = req.body;
                         if (mascota.cveMascota == null) {
-                            return [2 /*return*/, res.status(400).json({ meesage: "Error en actualización" })];
+                            return [2 /*return*/, res.status(400).json({ message: "Error en actualización" })];
                         }
                         return [4 /*yield*/, mascotasDao_1.daoM.update(mascota)];
                     case 1:
                         result = _a.sent();
                         if (result.affectedRows > 0) {
-                            return [2 /*return*/, res.json({ meesage: "La actualización se realizó correctamente" })];
+                            return [2 /*return*/, res.json({ message: "La actualización se realizó correctamente" })];
                         }
                         else {
-                            return [2 /*return*/, res.status(400).json({ meesage: result.message })];
+                            return [2 /*return*/, res.status(400).json({ message: result.message })];
                         }
                         return [3 /*break*/, 3];
                     case 2:
