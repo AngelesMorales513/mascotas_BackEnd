@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
     database: {
-        host: 'localhost',
-        port: 3306,
-        user: 'root',
-        password: '',
+        host: 'mascotas-do-user-9674992-0.b.db.ondigitalocean.com',
+        port: 25060,
+        user: 'doadmin',
+        password: 'kr12mh2ua81i8w21',
         database: 'mascotas'
     }
 };
